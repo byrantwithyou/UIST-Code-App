@@ -1,20 +1,22 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, Image, TextInput } from 'react-native';
+import { StyleSheet, View, Button, TextInput } from 'react-native';
 import io from "socket.io-client";
 
-var ImagePicker = require('react-native-image-picker');
+let ImagePicker = require('react-native-image-picker');
+let host = "http://10.0.1.3";
+let port = 8089;
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       filePath: {},
-      test: 1,
+      UIControl: 1,
       text: "Input your name here"
     };
-    this.socket = io("http://10.0.2.2:8089");
+    this.socket = io(host + ":" + port);
   }
   chooseFile = () => {
-    var options = {
+    let options = {
       title: 'Image',
       storageOptions: {
         skipBackup: true,
@@ -32,7 +34,6 @@ export default class App extends React.Component {
         console.log("User tapped custom button: ", response.customButton);
         alert(response.customButton);
       } else {
-        console.log("dsf");
         let source = response;
         // You can also display the image using data:
         // let source = { uri: 'data:image/jpeg;base64,' + response.data };
@@ -45,13 +46,12 @@ export default class App extends React.Component {
   };
   myNext = function() {
     this.setState({
-      test: this.state.test + 1
+      UIControl: this.state.UIControl + 1
     });
     this.socket.emit("sendMobileName", this.state.text);
-    console.log(this.socket);
   }
   render() {
-    const img = 
+    const snapshot = 
       <View style={styles.container}>
         {/*<Image 
         source={{ uri: this.state.filePath.path}} 
@@ -59,7 +59,7 @@ export default class App extends React.Component {
         
         <Button title="Take a photo" onPress={this.chooseFile.bind(this)} />
       </View>;
-    const text = 
+    const inputName = 
       <View style={styles.container}>
         <TextInput style={{height: 40, borderColor: "gray", borderWidth: 1}}
                     onChangeText={(text) => this.setState({ text })}
@@ -69,7 +69,7 @@ export default class App extends React.Component {
       </View>
     return (
       <View style={styles.container}>
-        {this.state.test == 1? text: img}
+        {this.state.UIControl == 1? inputName: snapshot}
       </View>
     );
   }
