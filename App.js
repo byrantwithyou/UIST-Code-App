@@ -13,7 +13,7 @@ export default class App extends React.Component {
     this.state = {
       filePath: {},
       UIControl: "inputName",
-      text: "Input your Name Here"
+      studentName: "Input your Name Here"
     };
     this.socket = io(host + ":" + port);
   }
@@ -42,7 +42,7 @@ export default class App extends React.Component {
         this.setState({
           filePath: source
         });
-        this.socket.emit("sendMobilePhoto", 'data:image/jpeg;base64,' + this.state.filePath.data);
+        this.socket.emit("sendMobilePhoto", 'data:image/jpeg;base64,' + this.state.filePath.data, this.state.studentName);
       }
     });
   };
@@ -50,7 +50,6 @@ export default class App extends React.Component {
     this.setState({
       UIControl: "snapshot"
     });
-    this.socket.emit("sendMobileName", this.state.text);
   }
   render() {
     const snapshot = 
@@ -65,7 +64,7 @@ export default class App extends React.Component {
       <View style={styles.container}>
         <TextInput style={{height: 40, borderColor: "gray", borderWidth: 1}}
                     onChangeText={(text) => this.setState({ text })}
-                    value={this.state.text}
+                    value={this.state.studentName}
         />
         <Button title="Next" onPress={this.myNext.bind(this)}></Button>
       </View>
