@@ -5,17 +5,19 @@ import io from "socket.io-client";
 let ImagePicker = require('react-native-image-picker');
 let host = "http://10.0.1.3";
 let port = 8089;
+
+
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       filePath: {},
-      UIControl: 1,
-      text: "Input your name here"
+      UIControl: "inputName",
+      text: "Input your Name Here"
     };
     this.socket = io(host + ":" + port);
   }
-  chooseFile = () => {
+  takePhoto = () => {
     let options = {
       title: 'Image',
       storageOptions: {
@@ -46,7 +48,7 @@ export default class App extends React.Component {
   };
   myNext = function() {
     this.setState({
-      UIControl: this.state.UIControl + 1
+      UIControl: "snapshot"
     });
     this.socket.emit("sendMobileName", this.state.text);
   }
@@ -57,7 +59,7 @@ export default class App extends React.Component {
         source={{ uri: this.state.filePath.path}} 
         style={{width: 100, height: 100}} />*/}
         
-        <Button title="Take a photo" onPress={this.chooseFile.bind(this)} />
+        <Button title="Take a photo" onPress={this.takePhoto.bind(this)} />
       </View>;
     const inputName = 
       <View style={styles.container}>
@@ -69,7 +71,7 @@ export default class App extends React.Component {
       </View>
     return (
       <View style={styles.container}>
-        {this.state.UIControl == 1? inputName: snapshot}
+        {this.state.UIControl == "inputName"? inputName: snapshot}
       </View>
     );
   }
