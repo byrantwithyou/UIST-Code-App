@@ -13,7 +13,7 @@ export default class App extends React.Component {
     this.state = {
       filePath: {},
       UIControl: "inputName",
-      studentName: "Input your Name Here"
+      studentName: "Your Name"
     };
     this.socket = io(host + ":" + port);
   }
@@ -62,10 +62,12 @@ export default class App extends React.Component {
       </View>;
     const inputName = 
       <View style={styles.container}>
-        <TextInput style={{height: 40, borderColor: "gray", borderWidth: 1}}
-                    onChangeText={(text) => this.setState({ text })}
-                    value={this.state.studentName}
-        />
+        <View style={{width: 100, height: 100}}>
+          <TextInput style={{height: 40, borderColor: "gray", borderWidth: 1}}
+                      onChangeText={(text) => this.setState({ text })}
+                      value={this.state.studentName}
+          />
+        </View>
         <Button title="Next" onPress={this.myNext.bind(this)}></Button>
       </View>
     return (
