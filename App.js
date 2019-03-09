@@ -64,7 +64,7 @@ export default class App extends React.Component {
       <View style={styles.container}>
         <View style={{width: 100, height: 100}}>
           <TextInput style={{height: 40, borderColor: "gray", borderWidth: 1}}
-                      onChangeText={(text) => this.setState({ text })}
+                      onChangeText={(studentName) => this.setState({ studentName })}
                       value={this.state.studentName}
           />
         </View>
