@@ -3,7 +3,7 @@ import { StyleSheet, View, Button, TextInput } from 'react-native';
 import io from "socket.io-client";
 
 let ImagePicker = require('react-native-image-picker');
-let host = "http://192.168.0.11";
+let host = "http://10.0.1.9";
 let port = 8089;
 
 
