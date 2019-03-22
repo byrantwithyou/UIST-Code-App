@@ -3,8 +3,7 @@ import { StyleSheet, View, Button, TextInput } from 'react-native';
 import io from "socket.io-client";
 
 let ImagePicker = require('react-native-image-picker');
-let host = "http://10.0.1.9";
-let port = 8089;
+let host = "https://obscure-beach-68992.herokuapp.com/";
 
 
 export default class App extends React.Component {
@@ -15,7 +14,7 @@ export default class App extends React.Component {
       UIControl: "inputName",
       studentName: "Your Name"
     };
-    this.socket = io(host + ":" + port);
+    this.socket = io(host);
   }
   takePhoto = () => {
     let options = {
