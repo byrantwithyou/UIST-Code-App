@@ -3,8 +3,11 @@ import { StyleSheet, View, Button, TextInput } from 'react-native';
 import io from "socket.io-client";
 
 let ImagePicker = require('react-native-image-picker');
-let host = "https://obscure-beach-68992.herokuapp.com/";
 
+//Switch Between the real server and the localhost
+
+let host = "https://obscure-beach-68992.herokuapp.com/";
+host = "http://10.0.1.9:3000";
 
 export default class App extends React.Component {
   constructor(props) {
