@@ -7,7 +7,7 @@ let ImagePicker = require('react-native-image-picker');
 //Switch Between the real server and the localhost
 
 let host = "https://obscure-beach-68992.herokuapp.com/";
-host = "http://10.0.1.9:3000";
+//host = "http://10.0.1.9:3000";
 
 export default class App extends React.Component {
   constructor(props) {
